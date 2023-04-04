@@ -1,34 +1,34 @@
 class Solution {
     public int solution(int n) {
         int answer = n + 1;
-        int a = Integer.bitCount(n);
+        int count = toBinary(n);
         
         while(true)
         {
-            if(Integer.bitCount(answer) == a)
+            if(toBinary(answer) == count)
                 break;
             
             answer++;
         }
         
         
-        
         return answer;
     }
     
-    public static String toBinary(int n)
+    public static int toBinary(int n)
     {
-        StringBuilder sb = new StringBuilder();
-        sb.append(1);
+        int count = 1;
+        
         while(n > 1)
         {
             int rest = n % 2;
-            sb.append(rest);
+            if(rest == 1)
+                count++;
             
             n = n / 2;
         }
         
-        return sb.toString();
+        return count;
     }
     
     public static int toNum(String str)
