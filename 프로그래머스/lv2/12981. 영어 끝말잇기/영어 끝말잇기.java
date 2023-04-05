@@ -4,9 +4,9 @@ class Solution {
     public int[] solution(int n, String[] words) {
         int[] answer = new int[2];
 
-        List<String> list = new ArrayList();
+        Set<String> set = new HashSet();
         int order = 1;
-        list.add(words[0]);
+        set.add(words[0]);
         
         for(int i = 1; i < words.length; i++)
         {
@@ -16,14 +16,15 @@ class Solution {
             char end = word1.charAt(word1.length() - 1);
             char start = word2.charAt(0);
             
-            if(end != start || list.contains(word2))
+            set.add(word2);
+            
+            if(end != start || set.size() != i + 1)
             {
                 answer[0] = (i % n) + 1;
                 answer[1] = (i / n) + 1;
                 return answer;
             }
                 
-            list.add(word2); 
         }
         
 
