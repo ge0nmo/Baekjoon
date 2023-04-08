@@ -11,20 +11,10 @@ class Solution {
         
         for(int rt = people.length - 1; rt >= lt; rt--)
         {
-            int weight = people[rt] + people[lt];
-            
-            if(weight > limit)
-                count++;
-                
-            else
-            {
+            if(people[rt] + people[lt] <= limit)
                 lt++;
-                while(weight > limit)
-                {
-                    weight += people[lt++];
-                }
-                count++;
-            }
+            
+            count++;            
         }
         
         return count;
