@@ -4,19 +4,17 @@ class Solution {
     public int solution(String s) {
         int answer = 0;
         
-        if(check(s))
-            answer++;
         
-        for(int i = 1; i < s.length(); i++)
+        for(int i = 0; i < s.length() - 1; i++)
         {
-            String temp = s.substring(0, i);
-            s = s.substring(i);
-            
-            s = s + temp;
-            
             if(check(s))
                 answer++;
+            
+            char word = s.charAt(0);
+            s = s.substring(1) + word;
+            
         }
+        
         
         return answer;
     }
@@ -25,18 +23,18 @@ class Solution {
     {
         Stack<Character> stack = new Stack();
         
-        for(char a : s.toCharArray())
+        for(char ch : s.toCharArray())
         {
-            if(a == '(')
+            if(ch == '(')
                 stack.push(')');
             
-            else if(a == '[')
-                stack.push(']');
-            
-            else if(a == '{')
+            else if(ch == '{')
                 stack.push('}');
             
-            else if(stack.isEmpty() || a != stack.pop())
+            else if(ch == '[')
+                stack.push(']');
+            
+            else if (stack.isEmpty() || ch != stack.pop())
                 return false;
                 
         }
