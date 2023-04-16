@@ -2,21 +2,12 @@ import java.util.*;
 
 class Solution 
 {
-    static Queue<Node> que = new LinkedList();
-    static boolean check[] = new boolean[1000001];
-    
-    public int solution(int x, int y, int n) {
-        int answer = 0;
-        
-        answer = bfs(x, y, n);
-        
-        return answer;
-    }
-    
-    public static int bfs(int x, int y, int n)
+    public int solution(int x, int y, int n) 
     {
-        que.offer(new Node(x, 0));
+        Queue<Node> que = new LinkedList();
+        boolean visited[] = new boolean[1000001];
         
+        que.offer(new Node(x, 0));
         
         while(!que.isEmpty())
         {
@@ -27,28 +18,29 @@ class Solution
             if(num == y)
                 return depth;
             
-            if(num + n <= y && !check[num + n])
+            if(num + n <= y && !visited[num + n])
             {
                 que.offer(new Node(num + n, depth + 1));
-                check[num + n] = true;
+                visited[num + n] = true;
             }
             
-            if(num * 2 <= y && !check[num * 2])
+            if(num * 2 <= y && !visited[num * 2])
             {
                 que.offer(new Node(num * 2, depth + 1));
-                check[num * 2] = true;
+                visited[num * 2] = true;
             }
             
-            if(num * 3 <= y && !check[num * 3])
+            if(num * 3 <= y && !visited[num * 3])
             {
                 que.offer(new Node(num * 3, depth + 1));
-                check[num * 3] = true;
+                visited[num * 3] = true;
             }
-            
         }
         
         return -1;
+        
     }
+
 }
 
 class Node
