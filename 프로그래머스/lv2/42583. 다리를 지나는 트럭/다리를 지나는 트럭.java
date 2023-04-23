@@ -3,7 +3,7 @@ import java.util.*;
 class Solution {
     public int solution(int bridge_length, int weight, int[] truck_weights) {
         int answer = 0;
-        int sum = 0;
+        int sum = truck_weights[0];
         
         Queue<Integer> que = new LinkedList();
         
@@ -14,19 +14,27 @@ class Solution {
         
         que.poll();
         que.offer(truck_weights[0]);
-        answer++;
-        sum += truck_weights[0];
+        answer++;;
         truck_weights = Arrays.copyOfRange(truck_weights, 1, truck_weights.length);
         
         while(truck_weights.length != 0 || sum != 0)
         {
             sum -= que.poll();
             
-            if(truck_weights.length != 0 && sum + truck_weights[0] <= weight)
+            if(truck_weights.length != 0)
             {
-                que.offer(truck_weights[0]);
-                sum += truck_weights[0];
-                truck_weights = Arrays.copyOfRange(truck_weights, 1, truck_weights.length);
+                if(sum + truck_weights[0] <= weight)
+                {
+                    que.offer(truck_weights[0]);
+                    sum += truck_weights[0];
+                    truck_weights = Arrays.copyOfRange(truck_weights, 1, truck_weights.length);
+                }
+                
+                else
+                {
+                    que.offer(0);
+                }
+                
             }
             
             else
