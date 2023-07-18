@@ -5,7 +5,8 @@ class Solution {
         int answer = 0;
         int length = citations.length;
         
-        Arrays.sort(citations);
+        //Arrays.sort(citations);
+        quickSort(0, length - 1, citations);
         
         for(int i = 0; i < length; i++)
         {
@@ -29,30 +30,30 @@ class Solution {
         if(left < right)
         {
             i = left;
-        j = right;
-        pivot = arr[left];
-        while(i < j)
-        {
-            while(arr[j] > pivot)
-            {
-                j--;
-            }
+            j = right;
+            pivot = arr[left];
             
-            while(i < j && arr[i] <= pivot)
+            while(i < j)
             {
-                i++;
+                while(arr[j] > pivot)
+                {
+                    j--;
+                }
+                
+                while(i < j && arr[i] <= pivot)
+                {
+                    i++;
+                }
+                
+                int temp = arr[i];
+                arr[i] = arr[j];
+                arr[j] = temp;
             }
-            
-            int temp = arr[i];
-            arr[i] = arr[j];
-            arr[j] = temp;
-        }
-            arr[left] = i;
+            arr[left] = arr[i];
             arr[i] = pivot;
-        
+            
             quickSort(left, i - 1, arr);
             quickSort(i + 1, right, arr);
         }
-        
     }
 }
