@@ -12,6 +12,7 @@ public class Main
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         int n = Integer.parseInt(br.readLine());
         getTriangularNum();
+        StringBuilder sb = new StringBuilder();
         
         for(int i = 0; i < n; i++)
         {
@@ -20,14 +21,16 @@ public class Main
             
             if(validateNum(num))
             {
-                System.out.println(1);
+                sb.append("1").append("\n");
             }
             
             else
             {
-                System.out.println(0);
+                sb.append("0").append("\n");
             }
         }
+        
+        System.out.print(sb);
     }
     
     public static boolean validateNum(int num)
