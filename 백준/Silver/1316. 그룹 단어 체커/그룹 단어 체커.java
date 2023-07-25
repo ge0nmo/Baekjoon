@@ -24,25 +24,19 @@ public class Main
     
     public static boolean check(String word)
     {
-        Set<Character> set = new HashSet();
-        set.add(word.charAt(0));
-        
+        int arr[] = new int[26];
+        arr[word.charAt(0) - 'a'] = 1;
         for(int i = 1; i < word.length(); i++)
         {
             char ch = word.charAt(i);
-            
             if(ch != word.charAt(i - 1))
             {
-                if(!set.contains(ch))
-                    set.add(ch);
+                if(arr[ch - 'a'] != 0) //0이 아니다 = 이미 나온 문자이다.
+                     return false;
                 
-                else
-                    return false;
+                arr[ch - 'a'] = 1;
             }
-            
-            
         }
-        
         return true;
     }
     
