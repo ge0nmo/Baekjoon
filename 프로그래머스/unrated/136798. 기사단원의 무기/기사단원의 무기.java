@@ -2,34 +2,26 @@ class Solution {
     public int solution(int number, int limit, int power) {
         int answer = 0;
         
+        int divisors[] = new int[number + 1];
+        
         for(int i = 1; i <= number; i++)
         {
-            int divisor = getDivisor(i);
-            if(divisor > limit)
-                answer += power;
-            
-            else
-                answer += divisor;
+            divisors[i] = 1;
+        }
+        
+        for(int i = 2; i <= number; i++)
+        {
+            for(int j = i; j <= number; j += i)
+            {
+                divisors[j]++;
+            }
+        }
+        
+        for(int i = 1; i <= number; i++)
+        {
+            answer += (divisors[i] > limit) ? power : divisors[i];
         }
         
         return answer;
-    }
-    
-    public static int getDivisor(int n)
-    {
-        int count = 0;
-        
-        
-        for(int i = 1; i * i <= n; i++)
-        {
-            if(i * i == n)
-                count++;
-            
-            else if(n % i == 0)
-                count += 2;
-        }
-        
-        
-        return count;
     }
 }
