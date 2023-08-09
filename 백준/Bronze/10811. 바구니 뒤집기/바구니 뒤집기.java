@@ -29,10 +29,13 @@ public class Main
                 swap(start, end);
         }
 
+        StringBuilder sb = new StringBuilder();
         for(int i : arr)
         {
-            System.out.print(i + " ");
+            sb.append(i).append(" ");
         }
+        
+        System.out.print(sb);
     }
 
     public static void swap(int start, int end)
