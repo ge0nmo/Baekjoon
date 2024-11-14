@@ -12,9 +12,9 @@ public class Main
             String str = br.readLine();    
             for(int j = 0; j < str.length(); j++)
             {
-                if((i % 2 == 0 && j % 2 == 0) || (i % 2 == 1 && j % 2 == 1))
+                if((i + j) % 2 == 0 && str.charAt(j) == 'F')
                 {
-                    if(str.charAt(j) == 'F') count++;
+                    count++;
                 }
             }                       
         }
