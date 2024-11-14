@@ -7,10 +7,18 @@ public class Main
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         int length = Integer.parseInt(br.readLine());        
         String str = br.readLine();
-        int answer = 0;
+        long answer = 0;
+        int M = 1234567891;
         for(int i = 0; i < length; i++){
             int n = str.charAt(i) - 96;
-            answer += n * (int)Math.pow(31, i);
+            long a = 1;
+            for(int j = 0; j < i; j++){
+                a = (a * 31) % M;
+            }
+            long temp = (n * a) % M;
+            answer += temp;
+            answer %= M;
+            
         }
 
         System.out.print(answer);
